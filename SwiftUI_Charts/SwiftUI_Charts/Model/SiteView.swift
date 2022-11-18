@@ -17,7 +17,8 @@ extension Date {
         return calendar.date(bySettingHour: value, minute: 0, second: 0, of: self) ?? .now
     }
 }
-       
+
+//샘플 데이터
 var sample_analytics: [SiteView] = [
     SiteView(hour: Date().updateHour(value: 8) ,views: 1500),
     SiteView(hour: Date().updateHour(value: 9) ,views: 2625),
