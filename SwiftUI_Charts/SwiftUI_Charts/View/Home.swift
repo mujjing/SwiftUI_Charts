@@ -44,6 +44,9 @@ struct Home: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding()
             .navigationTitle("Swift Charts")
+            .onChange(of: currentTab) { newValue in
+                sampleAnalytics = sample_analytics
+            }
         }
     }
     
@@ -66,8 +69,11 @@ struct Home: View {
         .frame(height: 250)
         .onAppear {
             for (index, _) in sampleAnalytics.enumerated() {
-                withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8).delay(Double(index) * 0.05)) {
-                    sampleAnalytics[index].animate = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
+                    withAnimation(.interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {
+                        sampleAnalytics[index].animate = true
+                    }
                 }
             }
         }
