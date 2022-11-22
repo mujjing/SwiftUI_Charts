@@ -46,6 +46,11 @@ struct Home: View {
             .navigationTitle("Swift Charts")
             .onChange(of: currentTab) { newValue in
                 sampleAnalytics = sample_analytics
+                if newValue != "7 Days" {
+                    for (index, _) in sampleAnalytics.enumerated() {
+                        sampleAnalytics[index].views = .random(in: 1500...10000)
+                    }
+                }
             }
         }
     }
